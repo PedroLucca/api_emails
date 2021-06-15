@@ -1,0 +1,59 @@
+<html>
+    <style>
+        body {
+            background-color: #333;
+            padding: 50px;
+        }
+        h1 {
+            text-align: center;
+            color: #04AA6D;
+        }
+        p {
+            text-align: center;
+            color: #ffffff;
+            font-size: 18px;
+        }
+        input {
+            font-size: 18px;
+        }
+        button {
+            font-size: 18px;
+        }
+    </style>
+    <head></head>
+    <body>
+    
+    <h1>Webservices: API de Emails</h1>
+    <p>Insira um nome de usuário, caso já exista o sistema fará o login, se não existir ele fará o cadastro e login.</h3>
+    <br><br><br>
+    <input class="entrada" id="valor" type="text" placeholder="Digite o seu usuário.">
+    <button id="btn" type="submit">Entre/Cadastre-se</button>
+    
+    <div></div>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(document).on('click','#btn', function(){
+            var valor = $('#valor').val();
+
+            if(valor != ''){
+                var data =  JSON.stringify({
+                    nome: valor
+                })
+                $.ajax({
+                type: "POST",
+                data: data,
+                dataType: 'json',
+                url: "http://localhost:3080/login"
+            }).done( function(res) {
+                console.log(res);
+                $('div').append(res.nome);
+                window.location.href = `./pages/caixa.html?user=${res.nome}`;
+            });
+            }
+        });
+    });
+    </script>
+    </body>
+</html>
