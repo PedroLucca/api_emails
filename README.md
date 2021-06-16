@@ -1,6 +1,4 @@
-Aluno: Pedro Lucca Monteiro Soares
-Aplicação: Api Emails
-Tecnologia: NodeJS
+# Api Emails
 
 --- Passo-a-passo de execução ---
 
